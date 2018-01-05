@@ -19,8 +19,8 @@ tar -zxvf nginx-1.13.0.tar.gz
 
 3. 检查
 进行检查，看是否报错
-cd /zx/nginx-1.13.0 && ./configure --prefix=/zx/nginx --conf-path=/zx/nginx/nginx.conf  
---prefix=/zx/nginx 这句指定安装后生成的文件夹名
+cd /zx/nginx-1.13.0 && ./configure --prefix=/zx/nginx --conf-path=/zx/nginx/nginx.conf    
+--prefix=/zx/nginx 这句指定安装后生成的文件夹名  
 --conf-path=/zx/nginx/nginx.conf  这句是指定conf路径，不加，下面安装的时候报了错（cp: `conf/koi-win' and `/usr/local/nginx/conf/koi-win' are the same file）
 4. 安装
 在nginx根目录
@@ -35,6 +35,11 @@ ps -ef | grep nginx
 netstat -aon |grep 80   
 
 浏览器访问 192.168.2.104:80 看到欢迎页面即可
+
+#### nginx ssl配置
+1. 安装时使用如下语句检查(多增加一个ssl模块)  
+>  ./configure --prefix=/zx2/nginx --conf-path=/zx2/nginx/nginx.conf --with-http_ssl_module
+2. 然后make && make install
 
 ---
 #### 配置文件 详见 项目中的 nginx配置文件说明
