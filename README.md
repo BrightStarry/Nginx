@@ -71,25 +71,25 @@ netstat -aon |grep 80
 #### 配置文件 详见 项目中的 nginx配置文件说明
 根据之前的那句指令（--conf-path=/zx/nginx/nginx.conf）找到nginx.conf
 vim /zx/nginx/nginx.conf
-
- server {
-    listen       80;   #端口号
-    server_name  localhost; 
-    #charset koi8-r;
-    #access_log  logs/host.access.log  main;
-    location / {
-        root   html;  #web项目路径，这个html就是相对路径，相对nginx的根目录
-        index  index.html index.htm;
-    }
-    #error_page  404              /404.html;
-    # redirect server error pages to the static page /50x.html
-    #
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   html;
-    }
- }
- 
+>
+      server {
+         listen       80;   #端口号
+         server_name  localhost; 
+         #charset koi8-r;
+         #access_log  logs/host.access.log  main;
+         location / {
+             root   html;  #web项目路径，这个html就是相对路径，相对nginx的根目录
+             index  index.html index.htm;
+         }
+         #error_page  404              /404.html;
+         # redirect server error pages to the static page /50x.html
+         #
+         error_page   500 502 503 504  /50x.html;
+         location = /50x.html {
+             root   html;
+         }
+      }
+ >
  这个server是在http{}中的，可以配置多个。
  
 ---
