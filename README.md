@@ -127,20 +127,26 @@ proxy_pass http://myapp;
 
 * 配置负载均衡
 在http{}中配置：
+>
 upstream myapp{
     server 192.168.2.105:8080 weight=1 max_fails=2 fail_timeout=30s;
     server 192.168.2.106:8080 weight=1 max_fails=2 fail_timeout=30s;
 }
-weight是权重，
-max_fails是指多少次请求失败后，认为该节点已失效
-fail_timeout是请求超时时间
+>
+weight是权重，  
+max_fails是指多少次请求失败后，认为该节点已失效  
+fail_timeout是请求超时时间  
 
-!!!注意，使用反向代理后获取客户端ip地址为nginx服务器地址，
-这里需要nginx进行forward，设置真实的ip地址:
-    #设置客户端真实ip地址
-proxy_set_header X-real-ip $remote_addr;  
+!!!注意，使用反向代理后获取客户端ip地址为nginx服务器地址，  
+这里需要nginx进行forward，设置真实的ip地址:  
+    #设置客户端真实ip地址  
+proxy_set_header X-real-ip $remote_addr;    
     #应该就是把真实ip放到http请求头的X-real-ip这个key中
 ---
+
+
+
+
 #### nginx + keepalived 实现高可用 http://www.huangxiaobai.com/archives/1814
 Keepalived是一个高性能的服务器高可用或热备解决方案。主要用来防止服务器单点故障的发生问题，
 可以通过它与Nginx配合实现web服务端的高可用。
