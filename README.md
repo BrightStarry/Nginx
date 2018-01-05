@@ -40,6 +40,32 @@ netstat -aon |grep 80
 1. 安装时使用如下语句检查(多增加一个ssl模块)  
 >  ./configure --prefix=/zx2/nginx --conf-path=/zx2/nginx/nginx.conf --with-http_ssl_module
 2. 然后make && make install
+3. 然后将两个文件拷贝到随便一个目录(我在nginx/ssl/目录下)
+4. 配置nginx.conf
+>
+     server {
+         listen       80;
+         server_name  fuliqiu.com;
+         #让80请求,重定向到https
+         return 301    https://$host$request_uri;
+     }
+    
+    server {
+        listen       443;
+        server_name  fuliqiu.com;
+        ssl on;
+        ssl_certificate      ssl/214415723560141.pem;
+        ssl_certificate_key  ssl/214415723560141.key;
+        ssl_session_timeout  5m;
+        ssl_ciphers AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_prefer_server_ciphers  on;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+    }
+>
 
 ---
 #### 配置文件 详见 项目中的 nginx配置文件说明
